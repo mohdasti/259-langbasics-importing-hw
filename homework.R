@@ -2,7 +2,7 @@
 #For full credit, provide answers for at least 6/8 questions
 
 #List names of students collaborating with (no more than 2): 
-
+only ME - Mohammad Dastgheib
 #GENERAL INFO 
 #data_A contains 12 files of data. 
 #Each file (6192_3.txt) notes the participant (6192) and block number (3)
