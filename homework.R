@@ -18,7 +18,7 @@
 # Load the readr package
 
 # ANSWER
-
+library(readr)
 
 ### QUESTION 2 ----- 
 
@@ -45,8 +45,7 @@
 col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 
 # ANSWER
-
-
+ds1 <- read_table("data_A/6191_1.txt", col_names = col_names, skip = 7) 
 
 ### QUESTION 3 ----- 
 
@@ -55,7 +54,8 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 # Then write the new data to a CSV file in the "data_cleaned" folder
 
 # ANSWER
-
+ds1 <- ds1 %>% add_column(trial_num_new = ds1$trial_num+100)
+write_csv(ds1, file = "data_cleaned/6191_1.csv")
 
 ### QUESTION 4 ----- 
 
@@ -63,14 +63,16 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 # Store it to a variable
 
 # ANSWER
-
+list_data_A <- list.files("data_A")
 
 ### QUESTION 5 ----- 
 
 # Read all of the files in data_A into a single tibble called ds
 
 # ANSWER
-
+library(dplyr)
+full_file_names <- dir('data_A', full.names = TRUE)
+ds <- read_table(full_file_names)
 
 ### QUESTION 6 -----
 
@@ -83,7 +85,26 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 # (It should work now, but you'll see a warning because of the erroneous data point)
 
 # ANSWER
+ds1 <- read_table("data_A/6191_1.txt", col_names = col_names, skip = 7) 
+ds2 <- read_table("data_A/6191_2.txt", col_names = col_names, skip = 7) 
+ds3 <- read_table("data_A/6191_3.txt", col_names = col_names, skip = 7) 
+ds4 <- read_table("data_A/6191_4.txt", col_names = col_names, skip = 7) 
+ds5 <- read_table("data_A/6191_5.txt", col_names = col_names, skip = 7) 
+ds6 <- read_table("data_A/6191_6.txt", col_names = col_names, skip = 7) 
+ds7 <- read_table("data_A/6192_1.txt", col_names = col_names, skip = 7) 
+ds8 <- read_table("data_A/6192_2.txt", col_names = col_names, skip = 7) 
+ds9 <- read_table("data_A/6192_3.txt", col_names = col_names, skip = 7) 
+ds10 <- read_table("data_A/6192_4.txt", col_names = col_names, skip = 7) 
+ds11 <- read_table("data_A/6192_5.txt", col_names = col_names, skip = 7) 
+ds12 <- read_table("data_A/6192_6.txt", col_names = col_names, skip = 7) 
+ds <- bind_rows(ds1,ds2,ds3,ds4,ds5,ds6,ds7,ds8,ds9,ds10,ds11,ds12)
+#fixing the column type:
+coltypes <- "iccl"
+ds5 <- read_table("data_A/6191_5.txt", col_names = col_names, skip = 7, col_types = coltypes)
+ds <- bind_rows(ds1,ds2,ds3,ds4,ds5,ds6,ds7,ds8,ds9,ds10,ds11,ds12)
 
+library(tidyverse)
+ds <- ds %>% add_column(trial_num_new = ds$trial_num+100)
 
 ### QUESTION 7 -----
 
@@ -93,7 +114,7 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 # Re-import the data so that filename becomes a column
 
 # ANSWER
-
+print(ds)
 
 ### QUESTION 8 -----
 
@@ -102,4 +123,10 @@ col_names  <-  c("trial_num","speed_actual","speed_response","correct")
 # There are two sheets of data -- import each one into a new tibble
 
 # ANSWER
+install.packages("readxl")
+library(readxl)
+
+participant_tibble <- read_excel("data_B/participant_info.xlsx", sheet = "participant")
+testdate_tibble <- read_excel("data_B/participant_info.xlsx", sheet = "testdate")
+
 
