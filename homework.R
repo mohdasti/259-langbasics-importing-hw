@@ -116,6 +116,20 @@ ds <- ds %>% add_column(trial_num_new = ds$trial_num+100)
 # ANSWER
 print(ds)
 
+ds1 <- read_tsv("data_A/6191_1.txt", col_names = col_names, skip = 7, id="path") 
+ds2 <- read_tsv("data_A/6191_2.txt", col_names = col_names, skip = 7, id="path") 
+ds3 <- read_tsv("data_A/6191_3.txt", col_names = col_names, skip = 7, id="path") 
+ds4 <- read_tsv("data_A/6191_4.txt", col_names = col_names, skip = 7, id="path") 
+ds5 <- read_tsv("data_A/6191_5.txt", col_names = col_names, skip = 7, col_types = coltypes, id="path") 
+ds6 <- read_tsv("data_A/6191_6.txt", col_names = col_names, skip = 7, id="path") 
+ds7 <- read_tsv("data_A/6192_1.txt", col_names = col_names, skip = 7, id="path") 
+ds8 <- read_tsv("data_A/6192_2.txt", col_names = col_names, skip = 7, id="path") 
+ds9 <- read_tsv("data_A/6192_3.txt", col_names = col_names, skip = 7, id="path") 
+ds10 <- read_tsv("data_A/6192_4.txt", col_names = col_names, skip = 7, id="path") 
+ds11 <- read_tsv("data_A/6192_5.txt", col_names = col_names, skip = 7, id="path") 
+ds12 <- read_tsv("data_A/6192_6.txt", col_names = col_names, skip = 7, id="path") 
+ds <- bind_rows(ds1,ds2,ds3,ds4,ds5,ds6,ds7,ds8,ds9,ds10,ds11,ds12)
+
 ### QUESTION 8 -----
 
 # Your PI emailed you an Excel file with the list of participant info 
